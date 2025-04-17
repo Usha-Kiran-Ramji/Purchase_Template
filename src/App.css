@@ -1,0 +1,215 @@
+/* Navbar Styling */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 30px;
+  background-color: gray;
+  color: white;
+}
+
+/* Left Section */
+.navbar-left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.bill-description {
+  font-size: 14px;
+  color: green;
+  font-style: italic;
+  margin: 0;
+}
+
+/* Right Section */
+.navbar-right {
+  display: flex;
+  align-items: center;
+}
+
+/* Purchases Link */
+.navbar-link {
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  margin-right: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.navbar-link:hover {
+  background-color: #40a9ff;
+}
+
+/* Dropdown Styles */
+.company-name,
+.language-dropdown,
+.logout-dropdown {
+  color: white;
+  font-size: 16px;
+  padding: 10px;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.company-name:hover,
+.language-dropdown:hover,
+.logout-dropdown:hover {
+  color: #40a9ff;
+}
+
+/* Button Styles */
+.navbar-btn {
+  background-color: pink;
+  border: none;
+  margin-right: 0px;
+  transition: background-color 0.3s ease;
+}
+
+.navbar-btn:hover {
+  background-color: #40a9ff;
+}
+
+/* Dropdown Menu Items */
+.ant-dropdown-menu-item {
+  color: #333;
+}
+
+/* Badge */
+.ant-badge-count {
+  background-color: red;
+}
+
+<--------section------------>
+/*Form Input Styles*/
+.form-item input,
+.form-item .ant-select,
+.form-item .ant-picker {
+  min-height: 40px;
+  font-size: 1rem;
+}
+
+.form-item label {
+  font-weight: 600;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+.form-actions {
+  padding-top: 20px;
+}
+
+.ant-btn {
+  min-width: 120px;
+  height: 40px;
+  font-size: 1rem;
+}
+
+ /* Underline for Select */
+.underlined-select .ant-select-selector {
+  border: none !important;
+  border-bottom: 1px solid #d9d9d9 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background-color: transparent !important;
+  padding-left: 0;
+  padding-right: 0;
+  transition: border-color 0.3s ease;
+}
+
+.underlined-select:hover .ant-select-selector,
+.underlined-select:focus-within .ant-select-selector {
+  border-bottom: 1px solid #1890ff !important;
+}
+
+/* Underline for DatePicker */
+.underlined-datepicker {
+  border: none !important;
+  border-bottom: 1px solid #d9d9d9 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background-color: transparent !important;
+  padding-left: 0;
+  padding-right: 0;
+  transition: border-color 0.3s ease;
+}
+
+.underlined-datepicker:hover,
+.underlined-datepicker:focus-within {
+  border-bottom: 1px solid #1890ff !important;
+}
+.underlined-select{
+  border-bottom: 1px solid #d9d9d9;
+  border-radius: 0;
+  box-shadow: none;
+}
+.underlined-select:focus-within,
+.underlined-select:focus{
+  border-bottom: 2px solid #1890ff;
+  outline: none;
+}
+.underlined-select,
+.underlined-datepicker {
+  border: none;
+  border-bottom: 1px solid #ccc;
+  border-radius: 0;
+  width: 100%;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  margin-top: 4px;
+}
+/* For AntD Input (Text Fields) */
+.underlined-input .ant-input {
+  border: none;
+  border-bottom: 2px solid #ccc;
+  border-radius: 0;
+  background-color: transparent;
+  box-shadow: none !important;
+  transition: border-color 0.3s ease;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.underlined-input .ant-input:focus {
+  border-bottom: 2px solid #1890ff;
+  outline: none;
+}
+
+/* For AntD Select */
+.underlined-select .ant-select-selector {
+  border: none !important;
+  border-bottom: 2px solid #ccc !important;
+  border-radius: 0 !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  transition: border-color 0.3s ease;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.underlined-select .ant-select-selector:focus,
+.underlined-select .ant-select-focused .ant-select-selector {
+  border-bottom: 2px solid #1890ff !important;
+}
+
+/* For AntD DatePicker */
+.underlined-datepicker .ant-picker {
+  border: none;
+  border-bottom: 2px solid #ccc;
+  border-radius: 0;
+  background-color: transparent;
+  box-shadow: none !important;
+  transition: border-color 0.3s ease;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.underlined-datepicker .ant-picker-focused {
+  border-bottom: 2px solid #1890ff;
+}
