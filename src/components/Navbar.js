@@ -1,60 +1,55 @@
 import React from 'react';
-import { Layout, Menu, Dropdown, Button, Badge } from 'antd';
-import { BellOutlined, LogoutOutlined, DownOutlined } from '@ant-design/icons';
+import { Layout, Dropdown, Button, Badge } from 'antd';
+import { BellOutlined, DownOutlined } from '@ant-design/icons';
 import '../App.css';
 
 const { Header } = Layout;
 
 const Navbar = () => {
-  const fintechMenu = (
-    <Menu>
-      <Menu.Item key="1">Profile</Menu.Item>
-      <Menu.Item key="2">Settings</Menu.Item>
-      <Menu.Item key="3">Help</Menu.Item>
-    </Menu>
-  );
+  // Menu items for Fintech dropdown
+  const fintechMenuItems = [
+    { key: '1', label: 'Profile' },
+    { key: '2', label: 'Settings' },
+    { key: '3', label: 'Help' },
+  ];
 
-  const languageMenu = (
-    <Menu>
-      <Menu.Item key="en">English</Menu.Item>
-      <Menu.Item key="es">Spanish</Menu.Item>
-      <Menu.Item key="fr">French</Menu.Item>
-    </Menu>
-  );
+  // Menu items for language dropdown
+  const languageMenuItems = [
+    { key: 'en', label: 'English' },
+    { key: 'es', label: 'Spanish' },
+    { key: 'fr', label: 'French' },
+  ];
 
-  const logoutMenu = (
-    <Menu>
-      <Menu.Item key="Logout">Logout</Menu.Item>
-    </Menu>
-  );
+  // Menu items for logout dropdown
+  const logoutMenuItems = [
+    { key: 'logout', label: 'Logout' },
+  ];
 
   return (
     <Header className="navbar">
       <div className="navbar-left">
         <p className="bill-description">
-          Purchases<br/>
-          A Bill is a document that indicates 
+          <strong>Purchases</strong> A Bill is a document that indicates the amount you owe your vendors.
         </p>
       </div>
-      <div className="navbar-right">
-        
 
-        {/* Fintech Dropdown */}
-        <Dropdown overlay={fintechMenu}>
-          <a className="company-name" onClick={(e) => e.preventDefault()}>
+      <div className="navbar-right">
+        {/* Fintech Company Dropdown */}
+        <Dropdown menu={{ items: fintechMenuItems }} trigger={['click']}>
+          <a onClick={e => e.preventDefault()} className="company-name">
             Fintech Company <DownOutlined />
           </a>
         </Dropdown>
 
         {/* Language Dropdown */}
-        <Dropdown overlay={languageMenu}>
-          <a className="language-dropdown" onClick={(e) => e.preventDefault()}>
+        <Dropdown menu={{ items: languageMenuItems }} trigger={['click']}>
+          <a onClick={e => e.preventDefault()} className="language-dropdown">
             English <DownOutlined />
           </a>
         </Dropdown>
 
-        {/* Notification Bell */}
-        <Badge count={3}>
+        {/* Notifications Bell */}
+        <Badge count={3} offset={[0, 0]}>
           <Button
             shape="circle"
             icon={<BellOutlined />}
@@ -63,8 +58,8 @@ const Navbar = () => {
         </Badge>
 
         {/* Logout Dropdown */}
-        <Dropdown overlay={logoutMenu}>
-          <a className="logout-dropdown" onClick={(e) => e.preventDefault()}>
+        <Dropdown menu={{ items: logoutMenuItems }} trigger={['click']}>
+          <a onClick={e => e.preventDefault()} className="logout-dropdown">
             Logout <DownOutlined />
           </a>
         </Dropdown>
