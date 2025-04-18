@@ -7,7 +7,7 @@ import '../App.css';
 const { Option } = Select;
 const { Title } = Typography;
 const { Content } = Layout;
-
+const { TextArea } = Input;
 const PurchaseForm = () => {
   const { control, handleSubmit, formState: { errors } } = useForm();
 
@@ -20,12 +20,16 @@ const PurchaseForm = () => {
   const [tax, setTax] = useState(0);
   const [tdsEnabled, setTdsEnabled] = useState(false);
   const [tdsAmount, setTdsAmount] = useState(0);
-
+  const [note, setNote] = useState('');
+  const [selectFile, setSelectFile] =useState(null);
   const total = subTotal - discount + tax - (tdsEnabled ? tdsAmount : 0);
 
   const onSubmit = (data) => {
     console.log('Form Submitted:', data);
     console.log('Table Data:', rows);
+    console.log('Note:', note);
+    console.log('Upload File:', selectFile);
+    alert('Form Submitted Sucessfully!');
   };
 
   const handleAddRow = () => {
@@ -37,10 +41,14 @@ const PurchaseForm = () => {
     newRows[index][field] = e.target.value;
     setRows(newRows);
   };
+  const handleSaveNote = () => {
+    console.log('Saved Note:', note);
+    alert('Note saved!');
+  };
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
-      <Navbar />
+     
       <Content style={{ padding: '24px' }} className="purchase-form-container">
         {/* <Title level={3}>Purchases</Title> */}
         {/* <p className="subtitle">A Bill is a document that indicates the amount you owe your vendors.</p> */}
@@ -195,8 +203,8 @@ const PurchaseForm = () => {
             {errors.purchaseDateAndTime && <p className="error">{errors.purchaseDateAndTime.message}</p>}
           </div>
 
-          {/* Table Section */}
-          <div className="form-item" style={{ width: '100%', marginTop: '32px' }}>
+                    {/* Table Section */}
+                    <div className="form-item" style={{ width: '100%', marginTop: '32px' }}>
             <table border="1" style={{ width: '100%', borderCollapse: 'collapse' }}>
               <thead>
                 <tr>
@@ -213,58 +221,102 @@ const PurchaseForm = () => {
                 {rows.map((row, index) => (
                   <tr key={index}>
                     {Object.keys(row).map((field) => (
-                      <td key={field}>
-                        <input
-                          type="text"
-                          placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
-                          value={row[field]}
-                          onChange={(e) => handleInputChange(e, index, field)}
-                          style={{
-                            width: '100%',
-                            border: 'none',
-                            borderBottom: '1px solid #ccc',
-                            outline: 'none',
-                            padding: '4px 6px',
-                            background: 'transparent',
-                          }}
-                        />
-                      </td>
-                    ))}
+  <td key={field}>
+    {field === 'item' ? (
+      <select
+        value={row[field]}
+        onChange={(e) => handleInputChange(e, index, field)}
+        style={{
+          width: '100%',
+           padding: '4px 6px',
+          border: '1px ',
+          
+        }}
+      >
+        <option value="">Select Item</option>
+        <option value="Pen">Pen</option>
+        <option value="Notebook">Notebook</option>
+        <option value="Marker">Marker</option>
+        <option value="Folder">Folder</option>
+      </select>
+    ) : field === 'tax' ? (
+      <select
+        value={row[field]}
+        onChange={(e) => handleInputChange(e, index, field)}
+        style={{
+          width: '100%',
+          padding: '4px 6px',
+          border: '1px',
+          borderRadius: '4px',
+          
+        }}
+      >
+        <option value="">Select Tax</option>
+        <option value="5%">5%</option>
+        <option value="12%">12%</option>
+        <option value="18%">18%</option>
+        <option value="28%">28%</option>
+      </select>
+    ) : (
+      <input
+        type="text"
+        placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
+        value={row[field]}
+        onChange={(e) => handleInputChange(e, index, field)}
+        style={{
+          width: '100%',
+          border: 'none',
+          borderBottom: '1px',
+          outline: 'none',
+          padding: '4px 6px',
+          
+        }}
+      />
+    )}
+  </td>
+))}
                   </tr>
                 ))}
               </tbody>
             </table>
-            <Button onClick={handleAddRow} style={{ marginTop: '10px' }}>+ Add Row</Button>
-          </div>
+
+  <Button onClick={handleAddRow} style={{ marginTop: '10px' }}>+ Add Row</Button>
+</div>
 
           {/* Summary Section */}
 <div style={{ 
   marginTop: '24px', 
   padding: '16px', 
-  background: '#fff', 
   borderRadius: '8px',
   width: '50%',
-  marginLeft: 'auto'  // aligns it to the right
+  marginLeft: 'auto',
+  backgroundColor: '#f9f9f9',
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '10px',
+  boxShadow: '0 0 8px rgba(0,0,0,0.1)'
 }}>
-  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
+  <div style={{ display: 'flex', justifyContent: 'space-between' }}>
     <span>Sub total</span>
     <span>₹ {subTotal.toFixed(2)}</span>
   </div>
-  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
+  <div style={{ display: 'flex', justifyContent: 'space-between' }}>
     <span>Total Discount</span>
     <span className="text-red-500">(-) ₹ {discount.toFixed(2)}</span>
   </div>
-  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
+  <div style={{ display: 'flex', justifyContent: 'space-between' }}>
     <span>Total Tax</span>
     <span className="text-green-600">(+) ₹ {tax.toFixed(2)}</span>
   </div>
-  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-    <label>
+  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+    <span>TDS</span>
+    <label className="switch">
       <input
         type="checkbox"
         checked={tdsEnabled}
         onChange={(e) => setTdsEnabled(e.target.checked)}
-      /> TDS
+      />
+      <span className="slider round"></span>
     </label>
     <span className="text-red-600">(-) ₹ {tdsEnabled ? tdsAmount.toFixed(2) : "0.00"}</span>
   </div>
@@ -274,15 +326,80 @@ const PurchaseForm = () => {
   </div>
 </div>
 
-
-          {/* Submit */}
-          <div style={{ marginTop: '24px' }}>
-            <Button type="primary" htmlType="submit">Submit</Button>
+{/* Notes Section */}
+<div className="form-item" style={{ marginTop: '24px', width: '100%' }}>
+            <label>Notes</label>
+            <TextArea
+              rows={4}
+              placeholder="Write any notes here..."
+              value={note}
+              onChange={(e) => setNote(e.target.value)}
+              style={{ width: '100%' }}
+            />
           </div>
+{/* === File Upload === */}
+<div style={{ marginTop: '24px', width: '38%' }}>
+  <label htmlFor="invoice-upload"><b>Attach a file(s) to the bill</b> (Material/Delivery Recipt/Purchase Order)</label><br />
+
+  <div style={{ display: 'flex', alignItems: 'center', marginTop: '8px' }}>
+    {/* Readonly Text Input */}
+    <input
+      type="text"
+      readOnly
+      value={selectFile ? selectFile.name : ''}
+      placeholder="Choose a file"
+      style={{
+        flex: 1,
+        padding: '8px',
+        border: '1px solid #ccc',
+        borderRadius: '4px 0 0 4px',
+        fontSize: '14px',
+        backgroundColor: '#fff',
+      }}
+    />
+
+    {/* Custom Browse Button */}
+    <label htmlFor="invoice-upload" style={{
+      backgroundColor: '#1890ff',
+      color: 'white',
+      padding: '8px 16px',
+      cursor: 'pointer',
+      borderRadius: '0 4px 4px 0',
+      fontSize: '14px',
+      border: '1px solid #1890ff',
+      borderLeft: 'none'
+    }}>
+      Browse
+    </label>
+
+    {/* Hidden File Input */}
+    <input
+      id="invoice-upload"
+      type="file"
+      accept=".pdf,.jpg,.jpeg,.png"
+      onChange={(e) => setSelectFile(e.target.files[0])}
+      style={{ display: 'none' }}
+    />
+  </div>
+</div>
+<div className="inline-button-group">
+  <Button  onClick={() => alert('Cancelled')} style={{ width: '120px' }}>
+    Cancel
+  </Button>
+  <Button type="primary" onClick={() => alert('Saved')} style={{ width: '120px' }} >
+    Save
+  </Button>
+  <Button type="primary" onClick={() => alert('Saved and Continued')} style={{ width: '120px' }}>
+    Save & Continue
+  </Button>
+</div>
+
+  
         </form>
       </Content>
     </Layout>
   );
 };
+
 
 export default PurchaseForm;
