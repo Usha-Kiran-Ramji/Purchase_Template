@@ -1,10 +1,16 @@
+/* App.js */
 import React from 'react';
-import 'antd/dist/reset.css'; // Ant Design styles
-import './App.css';
+import 'antd/dist/reset.css';
+import Navbar from './components/Navbar';
 import PurchaseForm from './components/PurchaseForm';
+import './App.css';
 
-const App = () => {
-  return <PurchaseForm />;
-};
-
+function App() {
+  return (
+    <div className="app-wrapper">
+      <Navbar />
+      <PurchaseForm />
+    </div>
+  );
+}
 export default App;
