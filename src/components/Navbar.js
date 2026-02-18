@@ -36,14 +36,14 @@ const Navbar = () => {
       <div className="navbar-right">
         {/* Fintech Company Dropdown */}
         <Dropdown menu={{ items: fintechMenuItems }} trigger={['click']}>
-          <a onClick={e => e.preventDefault()} className="company-name">
+          <a  href onClick={e => e.preventDefault()} className="company-name">
             Fintech Company <DownOutlined />
           </a>
         </Dropdown>
 
         {/* Language Dropdown */}
         <Dropdown menu={{ items: languageMenuItems }} trigger={['click']}>
-          <a onClick={e => e.preventDefault()} className="language-dropdown">
+          <a href onClick={e => e.preventDefault()} className="language-dropdown">
             English <DownOutlined />
           </a>
         </Dropdown>
@@ -59,7 +59,7 @@ const Navbar = () => {
 
         {/* Logout Dropdown */}
         <Dropdown menu={{ items: logoutMenuItems }} trigger={['click']}>
-          <a onClick={e => e.preventDefault()} className="logout-dropdown">
+          <a href onClick={e => e.preventDefault()} className="logout-dropdown">
             Logout <DownOutlined />
           </a>
         </Dropdown>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Layout, Typography, Input, DatePicker, Select, Button } from 'antd';
 import { useForm, Controller } from 'react-hook-form';
-import Navbar from './Navbar';
+// import Navbar from './Navbar';
 import '../App.css';
 
 const { Option } = Select;
